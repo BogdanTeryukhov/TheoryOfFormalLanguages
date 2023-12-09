@@ -6,5 +6,6 @@
 3. Далее выводится результат в консоль, после можно продолжить заполнение
 
 Проверка Fuzz модуля:
-1. Запускаете файл ResultsOfComparativeParsing.java, директория fuzz
-2. Вывод в results.txt
+1. В input.json лежат входные данные для данного модуля (можно поменять)
+2. Запускаете файл ResultsOfComparativeParsing.java, директория fuzz
+3. Вывод в results.txt
