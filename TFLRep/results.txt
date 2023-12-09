@@ -1,0 +1,700 @@
+1 expression:
+	Word: pmmpmggd
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+2 expression:
+	Word: ttmppmmdpp
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+3 expression:
+	Word: ddpp
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+4 expression:
+	Word: mdd
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+5 expression:
+	Word: tpttmpmdd
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+6 expression:
+	Word: mmmpddppddd
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+7 expression:
+	Word: ttmmggp
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+8 expression:
+	Word: ptmpdgdp
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+9 expression:
+	Word: pmmpddppd
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+10 expression:
+	Word: pptmdd
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+11 expression:
+	Word: qqqqqssssqqggl
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+12 expression:
+	Word: ssll
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+13 expression:
+	Word: qqtttsltt
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+14 expression:
+	Word: qqqttllqql
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+15 expression:
+	Word: ttttssssstll
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+16 expression:
+	Word: qqqtqslstgs
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+17 expression:
+	Word: qqttssqgll
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+18 expression:
+	Word: qttqqllssqqgggggll
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+19 expression:
+	Word: ttssgg
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+20 expression:
+	Word: qtssql
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+21 expression:
+	Word: fkky
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+22 expression:
+	Word: yyykkffyll
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+23 expression:
+	Word: yyffffffffffll
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+24 expression:
+	Word: ykkffffll
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+25 expression:
+	Word: kyyffffll
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+26 expression:
+	Word: yffffyywwwffl
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+27 expression:
+	Word: yykkkfffl
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+28 expression:
+	Word: yffwffl
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+29 expression:
+	Word: kffkffwfwfwwfl
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+30 expression:
+	Word: yyffkfyf
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+31 expression:
+	Word: ssvvssvvawwwwww
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+32 expression:
+	Word: svvqqvvva
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+33 expression:
+	Word: saavvvsssswwwaww
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+34 expression:
+	Word: ssssvssssvvvaa
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+35 expression:
+	Word: wwvvssqqqqaa
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+36 expression:
+	Word: aaaaaw
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+37 expression:
+	Word: ssssssqqqqqqvvaawwwaa
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+38 expression:
+	Word: vssqqaaw
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+39 expression:
+	Word: wwvvsqqqqqqqvvvaaww
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+40 expression:
+	Word: swwavsqqvvvaawaaw
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+41 expression:
+	Word: mmduuuukkuuttuutuu
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+42 expression:
+	Word: d
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+43 expression:
+	Word: duuuuumuututt
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+44 expression:
+	Word: mmmdduukuummuuu
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+45 expression:
+	Word: dumukum
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+46 expression:
+	Word: dduukkkkkuukkmttu
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+47 expression:
+	Word: mdmdukmm
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+48 expression:
+	Word: mdmdumumumumutu
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+49 expression:
+	Word: ddmmdduuu
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+50 expression:
+	Word: mddmmk
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+51 expression:
+	Word: yumyy
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+52 expression:
+	Word: uynnmmmiuuiiy
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+53 expression:
+	Word: iuumy
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+54 expression:
+	Word: uinmiuiy
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+55 expression:
+	Word: iinmmiiuummm
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+56 expression:
+	Word: mmmmmmmmyyiy
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+57 expression:
+	Word: uuyynnumy
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+58 expression:
+	Word: uuyy
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+59 expression:
+	Word: iiiiiiynmyy
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+60 expression:
+	Word: iuniyiiumy
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+61 expression:
+	Word: iiqniintqntm
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+62 expression:
+	Word: mmmnnimmm
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+63 expression:
+	Word: qqttn
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+64 expression:
+	Word: mimnnitqm
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+65 expression:
+	Word: iiiiqqnntqq
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+66 expression:
+	Word: iinnntqq
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+67 expression:
+	Word: iqqinnmqqnnnq
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+68 expression:
+	Word: iiqmqq
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+69 expression:
+	Word: mmqmmtmm
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+70 expression:
+	Word: iiqqnnnnimqqmm
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+71 expression:
+	Word: hhppflpp
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+72 expression:
+	Word: ffffffllfff
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+73 expression:
+	Word: pp
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+74 expression:
+	Word: fffffp
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+75 expression:
+	Word: llpphhhfhhfpffffp
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+76 expression:
+	Word: lhhfffffp
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+77 expression:
+	Word: lfppffl
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+78 expression:
+	Word: lffppfffffff
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+79 expression:
+	Word: plhhfpp
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+80 expression:
+	Word: hphfhfffffpp
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+81 expression:
+	Word: yqqsastatq
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+82 expression:
+	Word: yqqstattq
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+83 expression:
+	Word: ssssstttaaqq
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+84 expression:
+	Word: qqsssaattttt
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+85 expression:
+	Word: yyqqqttaqq
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+86 expression:
+	Word: yqqssaa
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+87 expression:
+	Word: yssaayytaa
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+88 expression:
+	Word: yyst
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+89 expression:
+	Word: yqqasyaaqq
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+90 expression:
+	Word: yqssqqqtt
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+91 expression:
+	Word: rhtrryy
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+92 expression:
+	Word: jjrttjjjr
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+93 expression:
+	Word: httttjy
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+94 expression:
+	Word: ttrrryyr
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+95 expression:
+	Word: jtttjjtttrr
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+96 expression:
+	Word: jrhttjjrr
+	Regex inclusion: true
+	FSM inclusion: true
+	Equals?: true
+
+
+97 expression:
+	Word: jjrrhhhhtttyyrrr
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+98 expression:
+	Word: httttrhrry
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+99 expression:
+	Word: jjrthjrrrr
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
+100 expression:
+	Word: jjrrttttjjrrrr
+	Regex inclusion: false
+	FSM inclusion: false
+	Equals?: true
+
+
