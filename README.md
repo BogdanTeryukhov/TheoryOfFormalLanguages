@@ -3,8 +3,8 @@
 Пример входных данных:
 
 Grammar:
-S->adcBAFk
-A->f|c
+S->adcBAFk  
+A->f|c  
 A->eps
 B->aCd|eps
 C->k
