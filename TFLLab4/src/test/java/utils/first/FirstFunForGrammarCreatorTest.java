@@ -23,7 +23,7 @@ class FirstFunForGrammarCreatorTest {
 
     @Test
     void firstCreator() throws IOException {
-        Grammar grammar = GrammarAndWordScanner.grammarFill("C:\\\\Users\\\\andre\\\\IdeaProjects\\\\TFLLab2\\\\Lab4\\\\input.txt");
+        Grammar grammar = GrammarAndWordScanner.grammarFill("C:\\Users\\andre\\IdeaProjects\\TFLLab4\\src\\main\\resources\\input.txt");
         System.out.println("Grammar");
         System.out.println(grammar);
         if (Grammar.isGrammarLeftRecursive(grammar)){
@@ -42,9 +42,9 @@ class FirstFunForGrammarCreatorTest {
         FollowFunForGrammarCreator.followFunctionHashMap.forEach((key, value) -> System.out.println(key + " : " + value));
         System.out.println("Follow Functions Derivations\n");
 
-        if (Grammar.hasRepeatsOnFirstAndFollowFunctions(FirstFunForGrammarCreator.firstFunctionHashMap, FollowFunForGrammarCreator.followFunctionHashMap)){
-            throw new RuntimeException("Grammar is not LL(1) !");
-        }
+//        if (Grammar.hasRepeatsOnFirstAndFollowFunctions(FirstFunForGrammarCreator.firstFunctionHashMap, FollowFunForGrammarCreator.followFunctionHashMap)){
+//            throw new RuntimeException("Grammar is not LL(1) !");
+//        }
         System.out.println("Parsing Table: ");
         ParsingTableCreator.tableCreator(FirstFunForGrammarCreator.firstFunctionHashMap, FollowFunForGrammarCreator.followFunctionHashMap, grammar);
         System.out.println(ParsingTableCreator.parsingTable);
@@ -54,7 +54,7 @@ class FirstFunForGrammarCreatorTest {
         SyntaxTreeCreation.tree.forEach((key, value) -> System.out.println(key + " : " + value));
 
         System.out.println("\nIncremental Parsing");
-        IncrementalParsing.incrementalParsingRealisation(SyntaxTreeCreation.resultTree, "adcakdhk", ParsingTableCreator.parsingTable);
+        IncrementalParsing.incrementalParsingRealisation(SyntaxTreeCreation.resultTree, "baa", ParsingTableCreator.parsingTable);
         IncrementalParsing.incrementalTree.forEach((key,value) -> System.out.println(key + " : " + value));
         //SyntaxTreeCreation.createHashMap(ParsingTableCreator.parsingTable, "adcakdhk");
         //SyntaxTreeCreation.tree.forEach((key, value) -> System.out.println(key + " : " + value));

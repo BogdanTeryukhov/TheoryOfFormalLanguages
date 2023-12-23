@@ -103,7 +103,6 @@ public class SyntaxTreeCreation {
                 throw new RuntimeException("Word cant be parsed!");
         }
         resultTree = createTree(tree, String.valueOf(character), null);
-        //TODO - метод, добавляющий индексы поддеревьям
         addIndexesToNodes(resultTree);
         Tree.drawTree(resultTree, true, "");
     }

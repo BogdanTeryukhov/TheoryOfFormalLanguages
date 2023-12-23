@@ -1,13 +1,7 @@
 Grammar:
-S->adcBAFk
-A->f|c
-A->eps
-B->aCd|eps
-C->k
-C->h
-C->eps
-F->p|h
+S->bAc|eps
+A->bc|eps
 Word:
-adcfhk
+bc
 Redacted Word For Incremental Parsing:
-adcakdhk
+bbcc

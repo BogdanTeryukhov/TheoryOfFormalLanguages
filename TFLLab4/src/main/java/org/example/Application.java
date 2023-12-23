@@ -2,6 +2,7 @@ package org.example;
 
 import utils.fileScanning.GrammarAndWordScanner;
 import utils.grammar.Grammar;
+import utils.grammar.rule.Rule;
 import utils.syntaxTree.SyntaxTreeCreation;
 import utils.syntaxTree.incrementalParsing.IncrementalParsing;
 import utils.syntaxTree.parsingTable.ParsingTableCreator;
@@ -27,17 +28,19 @@ public class Application {
         }
         FollowFunForGrammarCreator.followCreator(grammar, FirstFunForGrammarCreator.firstFunctionHashMap);
 
-        if (Grammar.hasRepeatsOnFirstAndFollowFunctions(FirstFunForGrammarCreator.firstFunctionHashMap, FollowFunForGrammarCreator.followFunctionHashMap)){
-            throw new RuntimeException("Grammar is not LL(1) !");
-        }
+        //проверка
+        Grammar.secondCheck(grammar);
+//        if (Grammar.hasRepeatsOnFirstAndFollowFunctions(FirstFunForGrammarCreator.firstFunctionHashMap, FollowFunForGrammarCreator.followFunctionHashMap)){
+//            throw new RuntimeException("Grammar is not LL(1) !");
+//        }
         ParsingTableCreator.tableCreator(FirstFunForGrammarCreator.firstFunctionHashMap, FollowFunForGrammarCreator.followFunctionHashMap, grammar);
 
         System.out.println("LL(1) Parsing Tree: ");
         SyntaxTreeCreation.createHashMap(ParsingTableCreator.parsingTable, GrammarAndWordScanner.word);
-        //SyntaxTreeCreation.tree.forEach((key, value) -> System.out.println(key + " : " + value));
+        SyntaxTreeCreation.tree.forEach((key, value) -> System.out.println(key + " : " + value));
 
         System.out.println("\nIncremental LL(1) Parsing Tree");
         IncrementalParsing.incrementalParsingRealisation(SyntaxTreeCreation.resultTree, GrammarAndWordScanner.incWord, ParsingTableCreator.parsingTable);
-        //IncrementalParsing.incrementalTree.forEach((key,value) -> System.out.println(key + " : " + value));
+        IncrementalParsing.incrementalTree.forEach((key,value) -> System.out.println(key + " : " + value));
     }
 }

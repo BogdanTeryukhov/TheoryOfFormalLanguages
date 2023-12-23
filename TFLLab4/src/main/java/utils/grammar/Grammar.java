@@ -2,6 +2,8 @@ package utils.grammar;
 
 import lombok.*;
 import utils.grammar.rule.Rule;
+import utils.syntaxTree.parsingTable.firstAndFollow.FirstFunForGrammarCreator;
+import utils.syntaxTree.parsingTable.firstAndFollow.FollowFunForGrammarCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +32,41 @@ public class Grammar {
         return false;
     }
 
-    public static boolean hasRepeatsOnFirstAndFollowFunctions(Map<Character, List<String>> firstFunctionHashMap, Map<Character, List<String>> followFunctionHashMap){
-        for (Map.Entry<Character, List<String>> entry: firstFunctionHashMap.entrySet()) {
-            Character current = entry.getKey();
-            List<String> currentFollow = followFunctionHashMap.get(current);
-            for (int i = 0; i < currentFollow.size(); i++) {
-                if (entry.getValue().contains(currentFollow.get(i))){
-                    return true;
+    public static void secondCheck(Grammar grammar){
+        for (int i = 0; i < grammar.getRulesSet().size(); i++) {
+            Rule rule = grammar.getRulesSet().get(i);
+            if (Grammar.findRecursiveRule(rule.getFrom(), rule.getTo())){
+                continue;
+            }
+            else {
+                for (int j = 0; j < rule.getTo().size(); j++) {
+                    char[] arr = rule.getTo().get(j).toCharArray();
+                    if (!(arr[arr.length - 1] == rule.getFrom())){
+                        if (Grammar.hasRepeatsOnFirstAndFollowFunctions(FirstFunForGrammarCreator.firstFunctionHashMap, FollowFunForGrammarCreator.followFunctionHashMap, rule.getFrom())){
+                            throw new RuntimeException("Grammar is not LL(1) !");
+                        }
+                    }
                 }
+            }
+        }
+    }
+
+    public static boolean findRecursiveRule(Character getFrom, List<String> getTo){
+        for (int i = 0; i < getTo.size(); i++) {
+            char[] arr = getTo.get(i).toCharArray();
+            if (arr[arr.length - 1] == getFrom){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasRepeatsOnFirstAndFollowFunctions(Map<Character, List<String>> firstFunctionHashMap, Map<Character, List<String>> followFunctionHashMap, Character toCheck){
+        List<String> first = firstFunctionHashMap.get(toCheck);
+        List<String> follow = followFunctionHashMap.get(toCheck);
+        for (int i = 0; i < follow.size(); i++) {
+            if (first.contains(follow.get(i))){
+                return true;
             }
         }
         return false;
