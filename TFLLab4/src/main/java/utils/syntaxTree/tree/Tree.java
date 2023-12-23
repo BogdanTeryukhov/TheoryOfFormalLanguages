@@ -15,6 +15,7 @@ import java.util.Map;
 @ToString
 public class Tree {
     private String value;
+    private int index;
     private List<Tree> nodesList;
     public Tree() {
         nodesList = new ArrayList<>();
@@ -53,24 +54,15 @@ public class Tree {
         }
         for (int i = 0; i < tree.getNodesList().size(); i++) {
             if (tree.getNodesList().get(i).getNodesList().isEmpty() && i != tree.getNodesList().size() - 1){
-                System.out.println(prefix + "    ├── " + tree.getNodesList().get(i).getValue());
+                System.out.println(prefix + "    ├── " + tree.getNodesList().get(i).getValue() + " " + (tree.getNodesList().get(i).getIndex() == 0 ? "" : tree.getNodesList().get(i).getIndex()));
             }
             else {
-                System.out.println(prefix + "    └── " + tree.getNodesList().get(i).getValue());
+                System.out.println(prefix + "    └── " + tree.getNodesList().get(i).getValue() + " " + (tree.getNodesList().get(i).getIndex() == 0 ? "" : tree.getNodesList().get(i).getIndex()));
             }
             drawTree(tree.getNodesList().get(i), false, prefix + "    ");
         }
     }
     //"├── " : "└── "
-
-    public static void printTree(Tree tree){
-        for (int i = 0; i < tree.getNodesList().size(); i++) {
-            if (!isEpsilon(tree.getNodesList().get(i).getValue()) && !isTerminal(tree.getNodesList().get(i).getValue().charAt(0))){
-                printTree(tree.getNodesList().get(i));
-            }
-        }
-        System.out.println("Value: " + tree.getValue() + " Nodes: " + tree.getNodesList());
-    }
 
     public static boolean isTerminal(Character character){
         return character < 65 || character > 90;

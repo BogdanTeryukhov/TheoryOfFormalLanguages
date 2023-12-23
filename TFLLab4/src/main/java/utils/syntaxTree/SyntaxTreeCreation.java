@@ -9,9 +9,11 @@ import java.util.*;
 public class SyntaxTreeCreation {
     private static Stack<String> stack = new Stack<>();
 
-    public static Map<String, List<String>> tree = new HashMap<>();
+    public static Map<String, List<String>> tree = new LinkedHashMap<>();
 
     public static Tree resultTree = new Tree();
+
+    private static int index = 1;
 
     public static List<String> createCurrentNonterminalsList(String str){
         List<String> list = new ArrayList<>();
@@ -101,7 +103,22 @@ public class SyntaxTreeCreation {
                 throw new RuntimeException("Word cant be parsed!");
         }
         resultTree = createTree(tree, String.valueOf(character), null);
+        //TODO - метод, добавляющий индексы поддеревьям
+        addIndexesToNodes(resultTree);
         Tree.drawTree(resultTree, true, "");
+    }
+
+    public static void addIndexesToNodes(Tree resultTree){
+        for (int i = 0; i < resultTree.getNodesList().size(); i++) {
+            String str = resultTree.getNodesList().get(i).getValue();
+            if (isEpsilon(str) || isTerminal(str.charAt(0))){
+                resultTree.getNodesList().get(i).setIndex(index++);
+            }
+            else {
+                resultTree.getNodesList().get(i).setIndex(index);
+                addIndexesToNodes(resultTree.getNodesList().get(i));
+            }
+        }
     }
 
     public static boolean isTerminal(Character character){

@@ -7,9 +7,7 @@ C->k
 C->h
 C->eps
 F->p|h
-
 Word:
 adcfhk
-
 Redacted Word For Incremental Parsing:
 adcakdhk

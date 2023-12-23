@@ -13,11 +13,15 @@ public class IncrementalParsing {
 
     private static Stack<String> stack = new Stack<>();
 
-    public static HashMap<String,List<String>> incrementalTree = new HashMap<>();
+    public static Map<String,List<String>> incrementalTree = new LinkedHashMap<>();
 
     private static int currentIndexFromParsing = 0;
 
     private static int globalIndex = 0;
+
+    private static boolean itsAMatch = true;
+
+    private static boolean firstNonTerminal = true;
 
     public static void addStringInReverseOrderInImplementedAlgorithm(String str){
         if (isEpsilon(str)){
@@ -40,7 +44,6 @@ public class IncrementalParsing {
         else if (isEpsilon(stack.peek())){
             stack.pop();
             incrementalTree.put(root, List.of(str));
-            //incrementalTree.get(root).add(str);
             implementedProcessing(str, arr, index, parsingTable, root);
         }
         else {
@@ -75,7 +78,6 @@ public class IncrementalParsing {
 
         for (int i = 0; i < currentTree.getNodesList().size(); i++) {
             Tree currentNode = currentTree.getNodesList().get(i);
-            //System.out.println("Current node: " + currentNode.getValue());
             if (!isEpsilon(currentNode.getValue()) && isNonTerminal(currentNode.getValue())){
                 incrementalTree.get(currentValue).add(currentNode.getValue());
                 step(currentNode, subWord, parsingTable);
@@ -102,7 +104,31 @@ public class IncrementalParsing {
             throw new RuntimeException("Word can`t be parsed!");
         }
         Tree incAlgorithmTree = SyntaxTreeCreation.createTree(incrementalTree, value, null);
+        addIndexesOfReusedNodes(incAlgorithmTree, resultTree);
         Tree.drawTree(incAlgorithmTree, true, "");
+    }
+
+    public static void addIndexesOfReusedNodes(Tree incTree, Tree commonTree){
+
+        for (int i = 0; i < incTree.getNodesList().size(); i++) {
+            Tree currentInc = incTree.getNodesList().get(i);
+            Tree currentCommon = commonTree.getNodesList().get(i);
+            if (!isNonTerminal(currentInc.getValue())){
+                if (currentInc.getValue().equals(currentCommon.getValue())){
+                    incTree.setIndex(commonTree.getIndex());
+                    currentInc.setIndex(currentCommon.getIndex());
+                }
+                else {
+                    itsAMatch = false;
+                }
+                if (commonTree.getNodesList().size() == (i + 1)){
+                    break;
+                }
+            }
+            else {
+                addIndexesOfReusedNodes(incTree.getNodesList().get(i), commonTree.getNodesList().get(i));
+            }
+        }
     }
 
     public static boolean isNonTerminal(String value){
