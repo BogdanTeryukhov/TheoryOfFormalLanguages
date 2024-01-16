@@ -26,21 +26,23 @@ public class Application {
         for (int i = grammar.getRulesSet().size() - 1; i >= 0; i--) {
             FirstFunForGrammarCreator.firstCreator(grammar.getRulesSet().get(i));
         }
+        //System.out.println("First");
+        //FirstFunForGrammarCreator.firstFunctionHashMap.forEach((key,value)->System.out.println(key + " : " + value));
         FollowFunForGrammarCreator.followCreator(grammar, FirstFunForGrammarCreator.firstFunctionHashMap);
 
-        //проверка
-        Grammar.secondCheck(grammar);
-//        if (Grammar.hasRepeatsOnFirstAndFollowFunctions(FirstFunForGrammarCreator.firstFunctionHashMap, FollowFunForGrammarCreator.followFunctionHashMap)){
-//            throw new RuntimeException("Grammar is not LL(1) !");
-//        }
+        //System.out.println("Follow");
+        //FollowFunForGrammarCreator.followFunctionHashMap.forEach((key,value)->System.out.println(key + " : " + value));
         ParsingTableCreator.tableCreator(FirstFunForGrammarCreator.firstFunctionHashMap, FollowFunForGrammarCreator.followFunctionHashMap, grammar);
 
         System.out.println("LL(1) Parsing Tree: ");
         SyntaxTreeCreation.createHashMap(ParsingTableCreator.parsingTable, GrammarAndWordScanner.word);
-        SyntaxTreeCreation.tree.forEach((key, value) -> System.out.println(key + " : " + value));
+        //SyntaxTreeCreation.tree.forEach((key, value) -> System.out.println(key + " : " + value));
+
+        //System.out.println("Reps");
+        //SyntaxTreeCreation.reps.forEach((key, value) -> System.out.println(key + " : " + value));
 
         System.out.println("\nIncremental LL(1) Parsing Tree");
         IncrementalParsing.incrementalParsingRealisation(SyntaxTreeCreation.resultTree, GrammarAndWordScanner.incWord, ParsingTableCreator.parsingTable);
-        IncrementalParsing.incrementalTree.forEach((key,value) -> System.out.println(key + " : " + value));
+        //IncrementalParsing.incrementalTree.forEach((key,value) -> System.out.println(key + " : " + value));
     }
 }

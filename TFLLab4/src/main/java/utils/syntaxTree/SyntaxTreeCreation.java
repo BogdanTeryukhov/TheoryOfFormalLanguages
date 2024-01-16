@@ -8,12 +8,10 @@ import java.util.*;
 
 public class SyntaxTreeCreation {
     private static Stack<String> stack = new Stack<>();
-
     public static Map<String, List<String>> tree = new LinkedHashMap<>();
-
     public static Tree resultTree = new Tree();
-
     private static int index = 1;
+    public static Map<String, Integer> reps = new HashMap<>();
 
     public static List<String> createCurrentNonterminalsList(String str){
         List<String> list = new ArrayList<>();
@@ -24,7 +22,7 @@ public class SyntaxTreeCreation {
         return list;
     }
 
-    public static Tree createTree(Map<String, List<String>> treeHashMap, String top, Tree prev){ // доделать
+    public static Tree createTree(Map<String, List<String>> treeHashMap, String top, Tree prev){
         Tree root;
         if (prev != null){
             root = Tree.getTreeByValue(top, prev);
@@ -32,6 +30,7 @@ public class SyntaxTreeCreation {
         else {
             root = new Tree(top);
         }
+        //System.out.println("Get top: " + top);
         for (int i = 0; i < treeHashMap.get(top).size(); i++) {
             String str = treeHashMap.get(top).get(i);
             root.getNodesList().add(new Tree(str));
@@ -62,7 +61,12 @@ public class SyntaxTreeCreation {
         }
         else if (isEpsilon(stack.peek())){
             stack.pop();
-            tree.put(root, List.of(str));
+            if (reps.get(root) != null){
+                tree.put(root.concat(String.valueOf(reps.get(root) + 1)), List.of(str));
+            }
+            else {
+                tree.put(root, List.of(str));
+            }
             processing(str, arr, index, parsingTable, root);
         }
         else {
@@ -71,10 +75,39 @@ public class SyntaxTreeCreation {
                 Rule rule = ParsingTable.findRuleByFromAndTo(onTopOfStack, String.valueOf(arr[index]), parsingTable); // B->a
                 stack.pop();
                 addStringInReverseOrder(rule.getTo().get(0));
-                //tree.get(root). a -> C -> d
                 root = String.valueOf(onTopOfStack);
                 if (!rule.getTo().get(0).equals("eps")){
-                    tree.put(root, createCurrentNonterminalsList(rule.getTo().get(0)));
+                    if (reps.get(rule.getFrom().toString()) != null){
+                        //System.out.println("Root: " + root + " Str: " + str);
+                        List<String> pr = createCurrentNonterminalsList(rule.getTo().get(0));
+                        List<String> duplicatedPr = new ArrayList<>();
+                        int curInd = reps.get(rule.getFrom().toString()) + 2;
+                        for (int i = 0; i < pr.size(); i++) {
+                            if (pr.get(i).equals(rule.getFrom().toString())){
+                                duplicatedPr.add(pr.get(i).concat(String.valueOf(curInd++)));
+                            }
+                            else {
+                                duplicatedPr.add(pr.get(i));
+                            }
+                        }
+                        reps.put(root, reps.get(root) + 1);
+                        tree.put(root.concat(String.valueOf(reps.get(root))), duplicatedPr);
+                    }
+                    else {
+                        List<String> pr = createCurrentNonterminalsList(rule.getTo().get(0));
+                        List<String> duplicatedPr = new ArrayList<>();
+                        reps.put(root, 0);
+                        int curInd = reps.get(rule.getFrom().toString()) + 1;
+                        for (int i = 0; i < pr.size(); i++) {
+                            if (pr.get(i).equals(rule.getFrom().toString())){
+                                duplicatedPr.add(pr.get(i).concat(String.valueOf(curInd++)));
+                            }
+                            else {
+                                duplicatedPr.add(pr.get(i));
+                            }
+                        }
+                        tree.put(root, duplicatedPr);
+                    }
                 }
                 processing(stack.peek(), arr, index, parsingTable, root);
             }
@@ -91,7 +124,7 @@ public class SyntaxTreeCreation {
     }
 
     public static void createHashMap(ParsingTable parsingTable, String word){
-        Character character = parsingTable.getTransitions().get(0).getFrom(); // Начало
+        Character character = parsingTable.getTransitions().get(0).getFrom();
         stack.push("$");
         stack.push(String.valueOf(character));
         char[] arr = word.toCharArray();
@@ -102,7 +135,8 @@ public class SyntaxTreeCreation {
         catch (Exception e){
                 throw new RuntimeException("Word cant be parsed!");
         }
-        resultTree = createTree(tree, String.valueOf(character), null);
+        //tree.forEach((key,value) -> System.out.println(key + " : " + value));
+        resultTree = createTree(tree, String.valueOf(tree.entrySet().stream().findFirst().get().getKey()), null);
         addIndexesToNodes(resultTree);
         Tree.drawTree(resultTree, true, "");
     }

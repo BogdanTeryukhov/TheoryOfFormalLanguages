@@ -134,7 +134,6 @@ public class FollowFunForGrammarCreator {
         for (int i = 0; i < grammar.getRulesSet().size(); i++) {
             char from = grammar.getRulesSet().get(i).getFrom();
             List<Integer> indexes = searchingForAllCoincidences(from, tos);
-            //System.out.println("Indexes: " + indexes);
             if (topRule){
                 List<String> proxy = new ArrayList<>();
                 proxy.add("$");

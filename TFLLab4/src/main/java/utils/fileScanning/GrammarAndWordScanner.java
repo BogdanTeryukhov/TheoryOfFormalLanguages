@@ -44,6 +44,7 @@ public class GrammarAndWordScanner {
             fromStrings.add(from);
             grammar.getRulesSet().add(new Rule(from.charAt(0), to));
         }
+        //System.out.println("Cur Gram: " + grammar);
     }
 
     public static Grammar grammarFill(String sPath) throws IOException {

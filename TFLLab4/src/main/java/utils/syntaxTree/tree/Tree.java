@@ -54,10 +54,10 @@ public class Tree {
         }
         for (int i = 0; i < tree.getNodesList().size(); i++) {
             if (tree.getNodesList().get(i).getNodesList().isEmpty() && i != tree.getNodesList().size() - 1){
-                System.out.println(prefix + "    ├── " + tree.getNodesList().get(i).getValue() + " " + (tree.getNodesList().get(i).getIndex() == 0 ? "" : tree.getNodesList().get(i).getIndex()));
+                System.out.println(prefix + "    ├── " + tree.getNodesList().get(i).getValue().charAt(0) + " " + (tree.getNodesList().get(i).getIndex() == 0 ? "" : tree.getNodesList().get(i).getIndex()));
             }
             else {
-                System.out.println(prefix + "    └── " + tree.getNodesList().get(i).getValue() + " " + (tree.getNodesList().get(i).getIndex() == 0 ? "" : tree.getNodesList().get(i).getIndex()));
+                System.out.println(prefix + "    └── " + tree.getNodesList().get(i).getValue().charAt(0) + " " + (tree.getNodesList().get(i).getIndex() == 0 ? "" : tree.getNodesList().get(i).getIndex()));
             }
             drawTree(tree.getNodesList().get(i), false, prefix + "    ");
         }

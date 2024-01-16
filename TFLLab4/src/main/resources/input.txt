@@ -1,7 +1,9 @@
 Grammar:
-S->bAc|eps
-A->bc|eps
+S->bSc
+S->a
+
 Word:
-bc
+bac
+
 Redacted Word For Incremental Parsing:
-bbcc
+bbacc

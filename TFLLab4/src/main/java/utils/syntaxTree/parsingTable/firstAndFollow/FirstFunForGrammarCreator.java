@@ -27,7 +27,6 @@ public class FirstFunForGrammarCreator {
         List<String> values = new ArrayList<>();
 
         for (int i = 0; i < rule.getTo().size(); i++) {
-            //System.out.println(rule.getTo().get(i));
             if (rule.getTo().get(i).equals("eps")){
                 values.add("eps");
             }
@@ -35,7 +34,6 @@ public class FirstFunForGrammarCreator {
                 int index = 0;
                 char firstChar = rule.getTo().get(i).charAt(index);
                 if (isTerminal(firstChar)){
-                    //System.out.println("First Char: " + firstChar);
                     values.add(String.valueOf(firstChar));
                 }
                 else {

@@ -43,7 +43,13 @@ public class IncrementalParsing {
         }
         else if (isEpsilon(stack.peek())){
             stack.pop();
-            incrementalTree.put(root, List.of(str));
+            if (reps.get(root) != null && reps.get(root) > 0){
+                incrementalTree.put(root.concat(String.valueOf(reps.get(root))), List.of(str));
+                reps.put(root, reps.get(root) + 1);
+            }
+            else {
+                incrementalTree.put(root, List.of(str));
+            }
             implementedProcessing(str, arr, index, parsingTable, root);
         }
         else {
@@ -54,7 +60,38 @@ public class IncrementalParsing {
                 addStringInReverseOrderInImplementedAlgorithm(rule.getTo().get(0));
                 root = String.valueOf(onTopOfStack);
                 if (!rule.getTo().get(0).equals("eps")){
-                    incrementalTree.put(root, createCurrentNonterminalsList(rule.getTo().get(0)));
+                    if (reps.get(rule.getFrom().toString()) != null && reps.get(rule.getFrom().toString()) > 0){
+                        //System.out.println("Root: " + root + " Str: " + str);
+                        List<String> pr = createCurrentNonterminalsList(rule.getTo().get(0));
+                        List<String> duplicatedPr = new ArrayList<>();
+                        int curInd = reps.get(rule.getFrom().toString()) + 1;
+                        for (int i = 0; i < pr.size(); i++) {
+                            if (pr.get(i).equals(rule.getFrom().toString())){
+                                duplicatedPr.add(pr.get(i).concat(String.valueOf(curInd++)));
+                            }
+                            else {
+                                duplicatedPr.add(pr.get(i));
+                            }
+                        }
+                        incrementalTree.put(root.concat(String.valueOf(reps.get(root))), duplicatedPr);
+                        reps.put(root, reps.get(root) + 1);
+                    }
+                    else {
+                        List<String> pr = createCurrentNonterminalsList(rule.getTo().get(0));
+                        List<String> duplicatedPr = new ArrayList<>();
+                        int curInd = 1;
+                        for (int i = 0; i < pr.size(); i++) {
+                            if (pr.get(i).equals(rule.getFrom().toString())){
+                                duplicatedPr.add(pr.get(i).concat(String.valueOf(curInd++)));
+                            }
+                            else {
+                                duplicatedPr.add(pr.get(i));
+                            }
+                        }
+                        System.out.println(root + " " + reps.get(root) + " " + duplicatedPr);
+                        incrementalTree.put(root, duplicatedPr);
+                        reps.put(root, reps.get(root) + 1);
+                    }
                 }
                 implementedProcessing(stack.peek(), arr, index, parsingTable, root);
             }
@@ -78,17 +115,26 @@ public class IncrementalParsing {
 
         for (int i = 0; i < currentTree.getNodesList().size(); i++) {
             Tree currentNode = currentTree.getNodesList().get(i);
+            //System.out.println("Current node: " + currentNode.getValue());
             if (!isEpsilon(currentNode.getValue()) && isNonTerminal(currentNode.getValue())){
                 incrementalTree.get(currentValue).add(currentNode.getValue());
                 step(currentNode, subWord, parsingTable);
             }
             else if (!Objects.equals(currentNode.getValue(), String.valueOf(subWord.charAt(globalIndex)))){
-                stack.push(currentValue);
+                //System.out.println("here");
+                if (currentValue.equals("eps")){
+                    stack.push("eps");
+                }
+                else {
+                    stack.push(currentValue.substring(0,1));
+                }
                 implementedProcessing(currentValue, subWord.substring(globalIndex).toCharArray(), parsingIndex, parsingTable, currentValue);
                 globalIndex += currentIndexFromParsing;
                 currentIndexFromParsing = 0;
             }
             else {
+                //System.out.println(currentValue);
+                //incrementalTree.forEach((key,val) -> System.out.println(key + " : " + val));
                 incrementalTree.get(currentValue).add(currentNode.getValue());
                 globalIndex++;
             }
