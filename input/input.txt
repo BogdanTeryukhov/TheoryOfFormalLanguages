@@ -1,8 +1,0 @@
-Input word:
-aaa
-
-Step:
-1
-
-Starting Symbol:
-S
