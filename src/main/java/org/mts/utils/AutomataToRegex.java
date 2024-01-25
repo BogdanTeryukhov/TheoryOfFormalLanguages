@@ -31,12 +31,6 @@ public class AutomataToRegex {
         }
         return states;
     }
-
-    public static String getRandomState(List<String> states){
-        //RandomGenerator generator = RandomGeneratorFactory.getDefault().create();
-        return states.get(new Random().nextInt(0, states.size() - 2));
-    }
-
     public static void addingExtraStartingAndAcceptingStates(Automata automata){
         automata.getTransitions().add(new Transition("0", "eps", automata.getStartingState()));
         automata.setStartingState("0");
@@ -70,16 +64,17 @@ public class AutomataToRegex {
 
         //System.out.println(res.get(0));
         Automata duplicate = new Automata(automata);
-        //System.out.println(duplicate);
+        //System.out.println(res);
         String prevRegex = getRegexFromAutomata(duplicate, res.get(0));
         //System.out.println("Prev Regex: " + prevRegex);
         for (int i = 1; i < res.size(); i++) {
             //System.out.println("Res: " + res.get(i));
             Automata dupl = new Automata(automata);
             //System.out.println(dupl);
-            String regex = getRegexFromAutomata(dupl, res.get(i), prevRegex);
+            //System.out.println("Array: " + res.get(i));
+            String regex = getRegexFromAutomata(dupl, res.get(i));
             //System.out.println("Result Regex: " + regex);
-            if (regex != null){
+            if (regex.length() < prevRegex.length()){
                 prevRegex = regex;
             }
         }
@@ -93,7 +88,7 @@ public class AutomataToRegex {
             List<Transition> currentStateFroms = Automata.findTransitionsByParticularFrom(automata,currentState);
 //            System.out.println("Current state: " + currentState);
 //            System.out.println("Current tos: " + currentStateTos);
-//            System.out.println("Current froms: " + currentStateFroms);
+            //System.out.println("Current froms: " + currentStateFroms);
             for (Transition transitionTos: currentStateTos) {
                 for (Transition transitionFroms: currentStateFroms) {
                     String overheadTransition = Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()) == null ? "" : Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()).concat("+");
@@ -108,7 +103,7 @@ public class AutomataToRegex {
 //                    System.out.println("Loop transition: " + loopTransition);
 //                    System.out.println("Tos: " + transitionTos.getFrom() + " : " + transitionTos.getTo());
 //                    System.out.println("Froms: " + transitionFroms.getFrom() + " : " + transitionFroms.getTo());
-//                    System.out.println("Regex: " + regex + "\n");
+//                    System.out.println("Regex: " + regex);
                     if (Automata.ifTransitionHasAlreadyHere(automata, transitionTos.getFrom(), transitionFroms.getTo())){
                         int index = Automata.returnIndexOfCurrentTransition(automata, transitionTos.getFrom(), transitionFroms.getTo());
                         automata.getTransitions().remove(index);
@@ -120,66 +115,10 @@ public class AutomataToRegex {
             for (Integer index : indexes) {
                 automata.getTransitions().remove(index.intValue());
             }
-            //System.out.println("Automata: " + automata);
+            //System.out.println("Automata: " + automata + "\n");
             allStates.remove(currentState);
         }
         //System.out.println(automata);
-        return automata.getTransitions().get(0).getBy();
-    }
-
-    //0 eps q, q a q1
-    public static String getRegexFromAutomata(Automata automata, List<String> allStates, String prevRegex){
-        int i = 0;
-        boolean isMoreThanPrev = false;
-        while (allStates.size() > 2){
-            String currentState = allStates.get(i);
-            List<Transition> currentStateTos = Automata.findTransitionsByParticularTo(automata,currentState);
-            List<Transition> currentStateFroms = Automata.findTransitionsByParticularFrom(automata,currentState);
-//            System.out.println("Current state: " + currentState);
-//            System.out.println("Current tos: " + currentStateTos);
-//            System.out.println("Current froms: " + currentStateFroms);
-            for (Transition transitionTos: currentStateTos) {
-                for (Transition transitionFroms: currentStateFroms) {
-                    String overheadTransition = Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()) == null ? "" : Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()).concat("+");
-                    String loopTransition = Automata.loopTransition(automata,currentState) == null ? "" : "(".concat(Automata.loopTransition(automata,currentState)).concat(")*");
-
-                    String regex = overheadTransition
-                            .concat(transitionTos.getBy())
-                            .concat(loopTransition)
-                            .concat(transitionFroms.getBy());
-                    regex = removeEpsilons(regex);
-
-                    if (regex.length() >= prevRegex.length()){
-                        allStates.clear();
-                        isMoreThanPrev = true;
-                        break;
-                    }
-
-//                    System.out.println("Loop transition: " + loopTransition);
-//                    System.out.println("Tos: " + transitionTos.getFrom() + " : " + transitionTos.getTo());
-//                    System.out.println("Froms: " + transitionFroms.getFrom() + " : " + transitionFroms.getTo());
-//                    System.out.println("Regex: " + regex + "\n");
-                    if (Automata.ifTransitionHasAlreadyHere(automata, transitionTos.getFrom(), transitionFroms.getTo())){
-                        int index = Automata.returnIndexOfCurrentTransition(automata, transitionTos.getFrom(), transitionFroms.getTo());
-                        automata.getTransitions().remove(index);
-                    }
-                    automata.getTransitions().add(new Transition(transitionTos.getFrom(), regex, transitionFroms.getTo()));
-                }
-            }
-            if (isMoreThanPrev){
-                break;
-            }
-            List<Integer> indexes = Automata.getAllTransitionsByParticularState(automata, currentState);
-            for (Integer index : indexes) {
-                automata.getTransitions().remove(index.intValue());
-            }
-            //System.out.println("Automata: " + automata);
-            allStates.remove(currentState);
-        }
-        //System.out.println(automata);
-        if (isMoreThanPrev){
-            return null;
-        }
         return automata.getTransitions().get(0).getBy();
     }
 }

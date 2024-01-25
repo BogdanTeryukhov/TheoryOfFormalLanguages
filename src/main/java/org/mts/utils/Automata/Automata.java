@@ -52,7 +52,7 @@ public class Automata {
     public static String loopTransition(Automata automata, String state){
         for (int i = 0; i < automata.getTransitions().size(); i++) {
             Transition transition = automata.getTransitions().get(i);
-            if (transition.getFrom().equals(transition.getTo())){
+            if (transition.getFrom().equals(state) && transition.getTo().equals(state)){
                 return transition.getBy();
             }
         }
