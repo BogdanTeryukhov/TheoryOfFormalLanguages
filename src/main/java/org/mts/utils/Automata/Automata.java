@@ -49,14 +49,45 @@ public class Automata {
         return froms;
     }
 
-    public static String loopTransition(Automata automata, String state){
+    public static List<String> loopTransition(Automata automata, String state){
+        List<String> loopList = new ArrayList<>();
+        boolean firstIter = true;
         for (int i = 0; i < automata.getTransitions().size(); i++) {
             Transition transition = automata.getTransitions().get(i);
             if (transition.getFrom().equals(state) && transition.getTo().equals(state)){
-                return transition.getBy();
+                if (firstIter){
+                    loopList.add(transition.getBy());
+                }
+                else {
+                    loopList.add(" | " + transition.getBy());
+                }
             }
         }
-        return null;
+        return loopList;
+    }
+
+    public static String loopRegex(List<String> loopList){
+        if (loopList.size() == 0){
+            return null;
+        }
+        if (loopList.size() == 1){
+            return "(".concat(loopList.get(0)).concat(")*");
+        }
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < loopList.size(); i++) {
+            if (i == 0){
+                builder.append("(").append(loopList.get(i)).append("|");
+            }
+            else if (i == loopList.size() - 1){
+                builder.append(loopList.get(i)).append(")");
+            }
+            else {
+                builder.append(loopList.get(i)).append("|");
+            }
+        }
+        builder.append("*");
+        return builder.toString();
     }
 
     public static String overheadTransition(Automata automata, String from, String to){

@@ -92,7 +92,7 @@ public class AutomataToRegex {
             for (Transition transitionTos: currentStateTos) {
                 for (Transition transitionFroms: currentStateFroms) {
                     String overheadTransition = Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()) == null ? "" : Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()).concat("+");
-                    String loopTransition = Automata.loopTransition(automata,currentState) == null ? "" : "(".concat(Automata.loopTransition(automata,currentState)).concat(")*");
+                    String loopTransition = Automata.loopRegex(Automata.loopTransition(automata,currentState)) == null ? "" : Automata.loopRegex(Automata.loopTransition(automata,currentState));
 
                     String regex = overheadTransition
                             .concat(transitionTos.getBy())
