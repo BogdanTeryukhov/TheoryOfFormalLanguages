@@ -3,10 +3,7 @@ package org.mts.utils;
 import org.mts.utils.Automata.Automata;
 import org.mts.utils.Automata.Transition;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class AutomataToRegex {
 
@@ -88,16 +85,25 @@ public class AutomataToRegex {
             List<Transition> currentStateFroms = Automata.findTransitionsByParticularFrom(automata,currentState);
 //            System.out.println("Current state: " + currentState);
 //            System.out.println("Current tos: " + currentStateTos);
-            //System.out.println("Current froms: " + currentStateFroms);
+//            System.out.println("Current froms: " + currentStateFroms);
             for (Transition transitionTos: currentStateTos) {
                 for (Transition transitionFroms: currentStateFroms) {
-                    String overheadTransition = Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()) == null ? "" : Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()).concat("+");
+                    String overheadTransition = Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()) == null ? "" : Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo());
                     String loopTransition = Automata.loopRegex(Automata.loopTransition(automata,currentState)) == null ? "" : Automata.loopRegex(Automata.loopTransition(automata,currentState));
 
-                    String regex = overheadTransition
-                            .concat(transitionTos.getBy())
-                            .concat(loopTransition)
-                            .concat(transitionFroms.getBy());
+                    String regex;
+                    if (Objects.equals(overheadTransition, "") || Objects.equals(overheadTransition, "eps")){
+                        regex = transitionTos.getBy()
+                                .concat(loopTransition)
+                                .concat(transitionFroms.getBy());
+                    }
+                    else{
+                        regex = "(".concat(overheadTransition).concat("|(")
+                                .concat(transitionTos.getBy())
+                                .concat(loopTransition)
+                                .concat(transitionFroms.getBy())
+                                .concat("))");
+                    }
                     regex = removeEpsilons(regex);
 
 //                    System.out.println("Loop transition: " + loopTransition);
@@ -118,7 +124,6 @@ public class AutomataToRegex {
             //System.out.println("Automata: " + automata + "\n");
             allStates.remove(currentState);
         }
-        //System.out.println(automata);
         return automata.getTransitions().get(0).getBy();
     }
 }
