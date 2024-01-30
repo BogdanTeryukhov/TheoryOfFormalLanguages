@@ -1,12 +1,15 @@
 Starting State:
-Q1
+S
 
 Accepting States:
-G4
+S
 
 Transitions:
-(G4,a)->Q1
-(Q1,a)->Q1
+(S,a)->Q1
 (Q1,b)->Q2
-(Q1,a)->G4
-(Q2,b)->Q2
+(Q1,a)->S
+(Q2,b)->Q3
+(Q2,c)->Q2
+(Q3,b)->Q3
+(Q3,a)->S
+(Q2,a)->S

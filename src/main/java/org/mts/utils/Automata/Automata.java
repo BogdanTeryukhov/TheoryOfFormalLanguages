@@ -90,6 +90,17 @@ public class Automata {
         return builder.toString();
     }
 
+    public static List<String> overheadTransitionList(Automata automata, String from, String to){
+        List<String> overheadList = new ArrayList<>();
+        for (int i = 0; i < automata.getTransitions().size(); i++) {
+            Transition transition = automata.getTransitions().get(i);
+            if (transition.getFrom().equals(from) && transition.getTo().equals(to)){
+                overheadList.add(transition.getBy());
+            }
+        }
+        return overheadList;
+    }
+
     public static String overheadTransition(Automata automata, String from, String to){
         for (int i = 0; i < automata.getTransitions().size(); i++) {
             Transition transition = automata.getTransitions().get(i);
@@ -98,6 +109,29 @@ public class Automata {
             }
         }
         return null;
+    }
+
+    public static String overheadRegex(List<String> overheadList){
+        if (overheadList.size() == 0){
+            return null;
+        }
+        if (overheadList.size() == 1){
+            return overheadList.get(0);
+        }
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < overheadList.size(); i++) {
+            if (i == 0){
+                builder.append("(").append(overheadList.get(i)).append("|");
+            }
+            else if (i == overheadList.size() - 1){
+                builder.append(overheadList.get(i)).append(")");
+            }
+            else {
+                builder.append(overheadList.get(i)).append("|");
+            }
+        }
+        return builder.toString();
     }
 
     public static boolean ifTransitionHasAlreadyHere(Automata automata, String from, String to){
