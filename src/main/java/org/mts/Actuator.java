@@ -73,8 +73,9 @@ public class Actuator {
     }
     public static void main(String[] args) throws IOException {
         automata = inputAutomata(args[0]);
-        AutomataToRegex.addingExtraStartingAndAcceptingStates(automata);
-        String minRegex = AutomataToRegex.getMinRegex(automata);
+        Automata uniqueAutomata = Automata.createUniqueTransitions(automata);
+        AutomataToRegex.addingExtraStartingAndAcceptingStates(uniqueAutomata);
+        String minRegex = AutomataToRegex.getMinRegex(uniqueAutomata);
         System.out.println("Min regex: " + minRegex);
     }
 }

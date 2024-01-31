@@ -88,9 +88,10 @@ public class AutomataToRegex {
 //            System.out.println("Current froms: " + currentStateFroms);
             for (Transition transitionTos: currentStateTos) {
                 for (Transition transitionFroms: currentStateFroms) {
-                    //String overheadTransition = Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()) == null ? "" : Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo());
-                    String overheadTransition = Automata.overheadRegex(Automata.overheadTransitionList(automata, transitionTos.getFrom(), transitionFroms.getTo())) == null ? "" : Automata.overheadRegex(Automata.overheadTransitionList(automata, transitionTos.getFrom(), transitionFroms.getTo()));
-                    String loopTransition = Automata.loopRegex(Automata.loopTransition(automata,currentState)) == null ? "" : Automata.loopRegex(Automata.loopTransition(automata,currentState));
+                    String overheadTransition = Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo()) == null ? "" : Automata.overheadTransition(automata, transitionTos.getFrom(), transitionFroms.getTo());
+                    //String overheadTransition = Automata.overheadRegex(Automata.overheadTransitionList(automata, transitionTos.getFrom(), transitionFroms.getTo())) == null ? "" : Automata.overheadRegex(Automata.overheadTransitionList(automata, transitionTos.getFrom(), transitionFroms.getTo()));
+                    //String loopTransition = Automata.loopRegex(Automata.loopTransition(automata,currentState)) == null ? "" : Automata.loopRegex(Automata.loopTransition(automata,currentState));
+                    String loopTransition = Automata.loopTransition(automata, currentState) == null ? "" : "(".concat(Automata.loopTransition(automata, currentState)).concat(")*");
 
                     String regex;
                     if (Objects.equals(overheadTransition, "") || Objects.equals(overheadTransition, "eps")){

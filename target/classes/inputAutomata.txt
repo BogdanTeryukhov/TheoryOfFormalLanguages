@@ -2,14 +2,11 @@ Starting State:
 S
 
 Accepting States:
-S
+Q2
 
 Transitions:
 (S,a)->Q1
 (Q1,b)->Q2
 (Q1,a)->S
-(Q2,b)->Q3
-(Q2,c)->Q2
-(Q3,b)->Q3
-(Q3,a)->S
-(Q2,a)->S
+(Q2,b)->Q2
+(Q2,a)->Q2
