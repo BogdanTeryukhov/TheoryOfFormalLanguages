@@ -106,7 +106,7 @@ public class Automata {
 
     public static String createGetTo(List<Transition> transitionList, Transition transition){
         StringBuilder builder = new StringBuilder();
-        builder.append(transition.getBy());
+        builder.append("(").append(transition.getBy());
 
         boolean noDuplicates = true;
         for (int i = 0; i < transitionList.size(); i++) {
@@ -120,7 +120,7 @@ public class Automata {
         if (noDuplicates){
             return transition.getBy();
         }
-        return builder.toString();
+        return builder.append(")").toString();
     }
 
     public static Automata destroyDuplicates(Automata automata){
